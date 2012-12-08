@@ -1,0 +1,43 @@
+bingcc:
+
+This is a very early, quite terrible program for limiting glibc symbol version
+dependencies when compiling things with modern versions of gcc. It's based on
+mjau's gensymoverride script, and is really just a quick wrapper around that.
+
+It doesn't touch libstdc++ at all, just libc, so while it should fix most of the
+GLIBC errors, it won't do a thing about the GLIBCXX ones. Try statically linking
+libstdc++ or using an old compiler (before gcc 4.6, you're probably pretty safe
+if you don't use many fancy STL features).
+
+Hopefully this will help make the world just a little more compatible. If it's
+not working (it's really just a bit of an experiment), let me know. Using an
+older toolchain (or indeed an older distro in a VM) will probably be a bit more
+reliable.
+
+Cheers,
+-- David <david@ingeniumdigital.com>
+
+Usage:
+
+[optional]: run ./setup-bingcc [max glibc version]
+ - This scans your system libraries and generates the header using mjau's
+   gensymoverride. Max glibc version defaults to 2.3.6.
+
+run bingcc-env:
+ - This launces a bash shell which will have bingcc set up: it sets the CC and
+   CXX environment variables to point to bingcc/bing++. ./configure (or
+   cmake) and build within this shell.
+
+check to see if it worked:
+ - use objdump -p <binary> to have a look at what's required
+ - objdump -CT <binary> | grep <version> to see what symbols are causing
+   problems.
+
+Notes:
+
+There's some commented out code for stdc++ stuff, which might work pre gcc4.6,
+but I've not had much luck yet myself.
+
+
+
+

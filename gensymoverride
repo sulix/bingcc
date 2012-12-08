@@ -1,0 +1,85 @@
+#!/bin/bash
+# [gensymoverride v0.2] by mjau, inspired by Autopackage's apsymbols
+
+LC_ALL=C
+
+function toint() {
+	echo "$1" | sed \
+			-e 's/^\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\) /\1 \2 \3 /' \
+			-e 's/^\([0-9]*\)\.\([0-9]*\) /\1 \2 0 /' |\
+		awk '{ print $1*1000000 + $2*1000 + $3 }'
+}
+
+function getsymver() {
+	max=4294967295
+	new=$max
+	newv=0
+	old=0
+	oldv=0
+	sym=$1
+	while test "x$2" != "x"; do
+		shift
+		sv=$(toint "$1 ")
+		if test $sv -le $ver; then
+			if test $sv -gt $old; then
+				old=$sv
+				oldv=$1
+			fi
+		else
+			if test $sv -lt $new; then
+				new=$sv
+				newv=$1
+			fi
+		fi
+	done
+	if test $new -lt $max -a $old -gt 0; then
+		echo '__asm__(".symver '$sym','$sym'@'$base'_'$oldv'");'
+	elif test $new -lt $max; then
+		echo '__asm__(".symver '$sym','$sym'@'$base'_NOT_AVAILABLE_BEFORE_'$newv'");'
+	#elif test $all -ne 0; then
+	#	echo '/* '$sym'@'$base'_'$oldv' */'
+	fi
+}
+
+function getversions() {
+	sym=$((for i in "$@"; do \
+		objdump -T "$i" | grep "${base}_" | grep -v "${base}_PRIVATE" |\
+		sed -e 's/.*'"${base}"'_\([.0-9]*\))* *\(.*\)/\2 \1/' \
+		-e 's/^ .*//'; done) | sort | uniq)
+	odd=1
+	last=
+	clr="                                        "
+	(for i in $sym; do
+		if test $odd -eq 1; then
+			if test "x$last" != "x$i"; then
+				last=$i
+				echo
+				echo -n "$i"
+			fi
+			odd=0
+		else
+			echo -n " $i"
+			odd=1
+		fi
+	done
+	echo) | grep . | while read line; do
+		echo -ne "$clr$clr\r$line\r" >&2
+		getsymver $line
+	done
+	echo -ne "$clr$clr\r" >&2
+}
+
+if test $# -lt 3; then
+	echo Usage: $0 VERSIONBASE VERSION library [library ..]
+	echo
+	echo "Example: $0" 'GLIBC 2.3.6 /lib/*.so* /usr/lib/*.so* >le-2.3.6.h'
+	echo '  Will generate symbols compatible with GLIBC versions up to 2.3.6'
+	echo '  based on libraries found in /lib and /usr/lib.'
+	exit 1
+fi
+
+base=$1
+ver=$(toint "$2 ")
+shift
+shift
+getversions "$@"

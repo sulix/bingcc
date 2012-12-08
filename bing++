@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bingcc_incpath=`dirname $(readlink -f $0)`
+bingcc_options="-fno-stack-protector"
+
+g++ $bingcc_options -include "$bingcc_incpath/glibc_ver.h" $@

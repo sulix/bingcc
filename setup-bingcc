@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+	libcver="2.3.6"
+else
+	libcver=$1
+fi
+
+#if [ -z $2 ]
+#then
+#	stdcppver="3.4.11"
+#else
+#	stdcppver=$2
+#fi
+
+echo "Generating files for glibc $libcver ..."
+
+./gensymoverride GLIBC "$libcver" /lib/*.so.* /usr/lib/*.so.* > glibc_ver.h 
+
+#echo "Generating files for libstdc++ $stdcppver ..."
+
+#./gensymoverride GLIBCXX "$stdcppver" /lib/*.so.* /usr/lib/*.so.* > stdcpp_ver.h
+
+echo "Done!"
+

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+bingcc_path=`dirname $(readlink -f $0)`
+
+env CC="$bingcc_path/bingcc32" CXX="$bingcc_path/bing++32" "$SHELL"
+
+
+
