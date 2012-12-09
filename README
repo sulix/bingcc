@@ -1,8 +1,6 @@
-bingcc:
-
-This is a very early, quite terrible program for limiting glibc symbol version
-dependencies when compiling things with modern versions of gcc. It's based on
-mjau's gensymoverride script, and is really just a quick wrapper around that.
+bingcc is a wrapper around gcc and mjau's gensymoverride for generating binaries
+which do not depend on newer glibc versions. It's got a pretty basic website at
+http://davidgow.net/hacks/bingcc.html
 
 It doesn't touch libstdc++ at all, just libc, so while it should fix most of the
 GLIBC errors, it won't do a thing about the GLIBCXX ones. Try statically linking
@@ -14,8 +12,10 @@ not working (it's really just a bit of an experiment), let me know. Using an
 older toolchain (or indeed an older distro in a VM) will probably be a bit more
 reliable.
 
-Cheers,
--- David <david@ingeniumdigital.com>
+It's all in the public domain (or Creative Commons Zero) except for
+gensymoverride, which isn't mine to license. Have fun with it, and let me know
+if you make any improvements. The "32" versions of things simply add "-m32" to
+the cflags for cross-compiling.
 
 Usage:
 
