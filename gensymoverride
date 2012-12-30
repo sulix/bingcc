@@ -1,7 +1,8 @@
 #!/bin/bash
 # [gensymoverride v0.2] by mjau, inspired by Autopackage's apsymbols
+# v0.2.1 by sulix: LC_ALL needs to be exported for sort to pick up on it :/
 
-LC_ALL=C
+export LC_ALL=C
 
 function toint() {
 	echo "$1" | sed \
@@ -77,6 +78,9 @@ if test $# -lt 3; then
 	echo '  based on libraries found in /lib and /usr/lib.'
 	exit 1
 fi
+
+
+
 
 base=$1
 ver=$(toint "$2 ")

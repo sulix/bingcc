@@ -1,5 +1,8 @@
 #!/bin/bash
 
+LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6"
+LIBC32PATH="/lib/i386-linux-gnu/libc.so.6"
+
 if [ -z $1 ]
 then
 	libcver="2.3.6"
@@ -14,9 +17,13 @@ fi
 #	stdcppver=$2
 #fi
 
-echo "Generating files for glibc $libcver ..."
+echo "Generating files for glibc $libcver (native) ..."
 
-./gensymoverride GLIBC "$libcver" /lib/*.so.* /usr/lib/*.so.* > glibc_ver.h 
+./gensymoverride GLIBC "$libcver" $LIBCPATH > glibc_ver.h 
+
+echo "Generating files for glibc $libcver (32-bit) ..."
+
+./gensymoverride GLIBC "$libcver" $LIBC32PATH > glibc_ver32.h 
 
 #echo "Generating files for libstdc++ $stdcppver ..."
 

@@ -1,6 +1,11 @@
 #!/bin/bash
 
 bingcc_incpath=`dirname $(readlink -f $0)`
-bingcc_options="-fno-stack-protector"
+
+# -fno-stack-protector: Requires a new gcc for _chk functions
+# -D_FORTIFY_SOURCE=0: Disable some security hardening which depends on new glibc
+# -U_FORTIFY_SOURCE: Fix a problem with gcc 4.6+, which doesn't like me.
+
+bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fno-stack-protector"
 
 g++ $bingcc_options -include "$bingcc_incpath/glibc_ver.h" $@
