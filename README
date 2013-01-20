@@ -9,10 +9,9 @@ if you don't use many fancy STL features).
 
 Be warned: there a several cases where using bingcc will simply stop your
 program from compiling. Basically, if you try to use too new a feature, it'll
-give up. The most notable thing at the moment is scanf and friends when
-compiling as c99. You can get around this sort of thing by running setup-bingcc
-with a higher glibc version, or by somehow finding a compiler switch to disable
-the missing functionality. bingcc will add some of these flags automatically.
+give up. You can get around this sort of thing by running setup-bingcc with a
+higher glibc version, or by somehow finding a compiler switch to disable the
+missing functionality. bingcc will add some of these flags automatically.
 
 Hopefully this will help make the world just a little more compatible. If it's
 not working (it's really just a bit of an experiment), let me know. Using an
