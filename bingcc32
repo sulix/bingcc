@@ -7,6 +7,6 @@ bingcc_incpath=`dirname $(readlink -f $0)`
 # -D_FORTIFY_SOURCE=0: Disable some security hardening which depends on new glibc
 # -U_FORTIFY_SOURCE: Fix a problem with gcc 4.6+, which doesn't like me.
 
-bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fno-stack-protector -m32"
+bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fno-stack-protector -fno-finite-math-only -m32"
 
 gcc $bingcc_options -include "$bingcc_incpath/glibc_ver32.h" $@

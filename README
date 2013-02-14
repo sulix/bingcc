@@ -24,6 +24,12 @@ gensymoverride, which isn't mine to license. Have fun with it, and let me know
 if you make any improvements. The "32" versions of things simply add "-m32" to
 the cflags for cross-compiling.
 
+You'll probably need to hack some of the paths in the various files in order
+to get it to work on anything other than the latest amd64 ubuntu release.
+
+You also might need to add CFLAGS=-fno-finite-math-only to your environment to
+counteract the use of -ffast-math.
+
 Usage:
 
 [optional]: run ./setup-bingcc [max glibc version]
@@ -46,6 +52,7 @@ There's some commented out code for stdc++ stuff, which might work pre gcc4.6,
 but I've not had much luck yet myself.
 
 There's a script to download and compile the Simple Directmedia Layer (v1.2) in
-the examples/ directory. Have a look if that's your thing.
+the examples/ directory. Have a look if that's your thing. There's also one to
+build libogg/libvorbis and friends.
 
 

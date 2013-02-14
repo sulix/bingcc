@@ -1,7 +1,7 @@
 #!/bin/bash
 
-LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6"
-LIBC32PATH="/lib/i386-linux-gnu/libc.so.6"
+LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6"
+LIBC32PATH="/lib/i386-linux-gnu/libc.so.6 /lib/i386-linux-gnu/libm.so.6"
 
 if [ -z $1 ]
 then

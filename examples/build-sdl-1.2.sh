@@ -20,15 +20,14 @@ BINGCCPATH=`readlink -f "$MYPATH/.."`
 wget -c http://www.libsdl.org/release/SDL-$SDLVER.tar.gz
 tar xf SDL-$SDLVER.tar.gz
 
-cd SDL-1.2.15
-
 BASEPATH=`readlink -f .`
+mkdir -p libs-32
+mkdir -p libs
 
-
+cd SDL-$SDLVER
 # Cross-compile a 32-bit version
 
 mkdir -p build-32
-mkdir -p libs-32
 
 cd build-32
 
@@ -40,7 +39,6 @@ cd ..
 # Compile a 64-bit version
 
 mkdir -p build
-mkdir -p libs
 
 cd build
 
