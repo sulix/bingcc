@@ -5,7 +5,12 @@ bingcc_incpath=`dirname $(readlink -f $0)`
 # -fno-stack-protector: Requires a new gcc for _chk functions
 # -D_FORTIFY_SOURCE=0: Disable some security hardening which depends on new glibc
 # -U_FORTIFY_SOURCE: Fix a problem with gcc 4.6+, which doesn't like me.
+# -D_GNU_SOURCE=1: Disable ISO C99 scanf (requires glibc 2.7+)
 
-bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fno-stack-protector -fno-finite-math-only"
+<<<<<<< HEAD
+bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector -fno-finite-math-only"
+=======
+bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector"
+>>>>>>> bfd0fd4885ece220aa04e447b8820703b2dab2ee
 
 gcc $bingcc_options -include "$bingcc_incpath/glibc_ver.h" $@
