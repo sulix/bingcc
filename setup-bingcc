@@ -1,7 +1,15 @@
 #!/bin/bash
 
-LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6"
-LIBC32PATH="/lib/i386-linux-gnu/libc.so.6 /lib/i386-linux-gnu/libm.so.6"
+if [ -f /etc/debian_version ] ; then
+	LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6"
+	LIBC32PATH="/lib/i386-linux-gnu/libc.so.6 /lib/i386-linux-gnu/libm.so.6"
+elif [ -f /etc/fedora-release ] ; then
+	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6"
+	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6"
+else
+	echo "Could not find settings for your distro!"
+	exit 1
+fi
 
 if [ -z $1 ]
 then
