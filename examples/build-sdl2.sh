@@ -7,6 +7,7 @@ MYPATH=`dirname "$MYFILENAME"`
 BINGCCPATH=`readlink -f "$MYPATH/.."`
 
 hg clone http://hg.libsdl.org/SDL
+wget -O fix-fullscreen.patch "http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1059"
 
 BASEPATH=`readlink -f .`
 mkdir -p libs-32
@@ -14,6 +15,8 @@ mkdir -p libs
 
 cd SDL
 # Cross-compile a 32-bit version
+
+hg import ../fix-fullscreen.patch
 
 mkdir -p build-32
 
