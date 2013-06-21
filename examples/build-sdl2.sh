@@ -7,7 +7,8 @@ MYPATH=`dirname "$MYFILENAME"`
 BINGCCPATH=`readlink -f "$MYPATH/.."`
 
 hg clone http://hg.libsdl.org/SDL
-wget -O fix-fullscreen.patch "http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1059"
+
+#wget -O fix-fullscreen.patch "http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1059"
 
 BASEPATH=`readlink -f .`
 mkdir -p libs-32
