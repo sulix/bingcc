@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if [ -f /etc/debian_version ] ; then
-	LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6"
-	LIBC32PATH="/lib/i386-linux-gnu/libc.so.6 /lib/i386-linux-gnu/libm.so.6"
+	LIBCPATH="/lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6 /lib/x86_64-linux-gnu/librt.so.1"
+	LIBC32PATH="/lib/i386-linux-gnu/libc.so.6 /lib/i386-linux-gnu/libm.so.6 /lib/i386-linux-gnu/librt.so.1"
 elif [ -f /etc/fedora-release ] ; then
-	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6"
-	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6"
+	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6 /lib64/librt.so.1"
+	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6 /lib/librt.so.1"
 elif [ -f /etc/redhat-release ] ; then
 	# Red Hat / CentOS / Sci Linux are the same as fedora
-	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6"
-	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6"
+	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6 /lib/librt.so.1"
+	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6 /lib/librt.so.1"
 else
 	echo "Could not find settings for your distro!"
 	exit 1
