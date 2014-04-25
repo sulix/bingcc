@@ -8,10 +8,6 @@ bingcc_incpath=`dirname $(readlink -f $0)`
 # -U_FORTIFY_SOURCE: Fix a problem with gcc 4.6+, which doesn't like me.
 # -D_GNU_SOURCE=1: Disable ISO C99 scanf (requires glibc 2.7+)
 
-<<<<<<< HEAD
 bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector -fno-finite-math-only -m32"
-=======
-bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector -m32"
->>>>>>> bfd0fd4885ece220aa04e447b8820703b2dab2ee
 
 g++ $bingcc_options -include "$bingcc_incpath/glibc_ver32.h" $@
