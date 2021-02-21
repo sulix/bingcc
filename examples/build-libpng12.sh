@@ -1,14 +1,14 @@
 #!/bin/sh
 
-PNGVER=1.2.50
+PNGVER=1.2.59
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
 MYPATH=`dirname "$MYFILENAME"`
 BINGCCPATH=`readlink -f "$MYPATH/.."`
 
-wget -c http://downloads.sourceforge.net/project/libpng/libpng12/$PNGVER/libpng-$PNGVER.tar.bz2
-tar xf libpng-$PNGVER.tar.bz2
+wget -c http://downloads.sourceforge.net/project/libpng/libpng12/$PNGVER/libpng-$PNGVER.tar.xz
+tar xf libpng-$PNGVER.tar.xz
 
 BASEPATH=`readlink -f .`
 mkdir -p libs-32
