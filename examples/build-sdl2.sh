@@ -6,7 +6,7 @@ MYFILENAME=`readlink -f "$0"`
 MYPATH=`dirname "$MYFILENAME"`
 BINGCCPATH=`readlink -f "$MYPATH/.."`
 
-hg clone http://hg.libsdl.org/SDL
+git clone https://github.com/libsdl-org/SDL.git
 
 #wget -O fix-fullscreen.patch "http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1059"
 
@@ -16,8 +16,6 @@ mkdir -p libs
 
 cd SDL
 # Cross-compile a 32-bit version
-
-hg import ../fix-fullscreen.patch
 
 mkdir -p build-32
 
