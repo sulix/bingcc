@@ -10,6 +10,10 @@ elif [ -f /etc/redhat-release ] ; then
 	# Red Hat / CentOS / Sci Linux are the same as fedora
 	LIBCPATH="/lib64/libc.so.6 /lib64/libm.so.6 /lib/librt.so.1"
 	LIBC32PATH="/lib/libc.so.6 /lib/libm.so.6 /lib/librt.so.1"
+elif [ -f /etc/arch-release ] ; then
+	# Arch Linux
+	LIBCPATH="/lib/libc.so.6 /lib/libm.so.6 /lib/librt.so.1"
+	LIBC32PATH="/usr/lib32/libc.so.6 /usr/lib32/libm.so.6 /usr/lib32/librt.so.1"
 elif [ -e /etc/os-release ] ; then
 	. /etc/os-release
 	if [[ "$ID_LIKE" = *"suse"* ]] ; then
