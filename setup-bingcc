@@ -26,7 +26,7 @@ fi
 
 if [ -z $1 ]
 then
-	libcver="2.3.6"
+	libcver="2.14"
 else
 	libcver=$1
 fi
