@@ -118,6 +118,7 @@ __asm__(".symver __sqrtf_finite,__sqrtf_finite@GLIBC_NOT_AVAILABLE_BEFORE_2.15")
 __asm__(".symver __sqrtl_finite,__sqrtl_finite@GLIBC_NOT_AVAILABLE_BEFORE_2.15");
 __asm__(".symver __strtof128_internal,__strtof128_internal@GLIBC_NOT_AVAILABLE_BEFORE_2.26");
 __asm__(".symver __wcstof128_internal,__wcstof128_internal@GLIBC_NOT_AVAILABLE_BEFORE_2.26");
+__asm__(".symver __x86_get_cpuid_feature_leaf,__x86_get_cpuid_feature_leaf@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
 __asm__(".symver __y0_finite,__y0_finite@GLIBC_NOT_AVAILABLE_BEFORE_2.15");
 __asm__(".symver __y0f128_finite,__y0f128_finite@GLIBC_NOT_AVAILABLE_BEFORE_2.26");
 __asm__(".symver __y0f_finite,__y0f_finite@GLIBC_NOT_AVAILABLE_BEFORE_2.15");
@@ -487,6 +488,10 @@ __asm__(".symver fromfpxf32x,fromfpxf32x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver fromfpxf64,fromfpxf64@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver fromfpxf64x,fromfpxf64x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver fromfpxl,fromfpxl@GLIBC_NOT_AVAILABLE_BEFORE_2.25");
+/* skipping symbol fstat */
+/* skipping symbol fstat64 */
+/* skipping symbol fstatat */
+/* skipping symbol fstatat64 */
 __asm__(".symver fsub,fsub@GLIBC_NOT_AVAILABLE_BEFORE_2.28");
 __asm__(".symver fsubl,fsubl@GLIBC_NOT_AVAILABLE_BEFORE_2.28");
 __asm__(".symver fts64_children,fts64_children@GLIBC_NOT_AVAILABLE_BEFORE_2.23");
@@ -610,9 +615,14 @@ __asm__(".symver lroundf32,lroundf32@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver lroundf32x,lroundf32x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver lroundf64,lroundf64@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver lroundf64x,lroundf64x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
+/* skipping symbol lstat */
+/* skipping symbol lstat64 */
+__asm__(".symver mallinfo2,mallinfo2@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
 __asm__(".symver mbrtoc16,mbrtoc16@GLIBC_NOT_AVAILABLE_BEFORE_2.16");
 __asm__(".symver mbrtoc32,mbrtoc32@GLIBC_NOT_AVAILABLE_BEFORE_2.16");
 __asm__(".symver memfd_create,memfd_create@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
+__asm__(".symver mknod,mknod@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
+__asm__(".symver mknodat,mknodat@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
 __asm__(".symver mlock2,mlock2@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver modff128,modff128@GLIBC_NOT_AVAILABLE_BEFORE_2.26");
 __asm__(".symver modff32,modff32@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
@@ -760,6 +770,8 @@ __asm__(".symver sqrtf32,sqrtf32@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver sqrtf32x,sqrtf32x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver sqrtf64,sqrtf64@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver sqrtf64x,sqrtf64x@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
+/* skipping symbol stat */
+/* skipping symbol stat64 */
 __asm__(".symver statx,statx@GLIBC_NOT_AVAILABLE_BEFORE_2.28");
 __asm__(".symver strerrordesc_np,strerrordesc_np@GLIBC_NOT_AVAILABLE_BEFORE_2.32");
 __asm__(".symver strerrorname_np,strerrorname_np@GLIBC_NOT_AVAILABLE_BEFORE_2.32");

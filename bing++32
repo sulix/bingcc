@@ -10,4 +10,4 @@ bingcc_incpath=`dirname $(readlink -f $0)`
 
 bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector -fno-finite-math-only -m32"
 
-g++ $bingcc_options -include "$bingcc_incpath/glibc_ver32.h" $@
+g++ $bingcc_options -include "$bingcc_incpath/glibc_ver32.h" $@ "$bingcc_incpath/glibc_wrapper32.o"

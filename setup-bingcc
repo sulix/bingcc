@@ -42,17 +42,24 @@ fi
 #	stdcppver=$2
 #fi
 
+bingcc_options="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -D_GNU_SOURCE=1 -fno-stack-protector -fno-finite-math-only"
+
 echo "Generating files for glibc $libcver (native) ..."
 
 ./gensymoverride GLIBC "$libcver" $LIBCPATH > glibc_ver.h 
+
+gcc $bingcc_options -include "glibc_ver.h" -c -o glibc_wrapper.o glibc_wrapper.c
 
 echo "Generating files for glibc $libcver (32-bit) ..."
 
 ./gensymoverride GLIBC "$libcver" $LIBC32PATH > glibc_ver32.h 
 
+gcc $bingcc_options -m32 -include "glibc_ver32.h" -c -o glibc_wrapper32.o glibc_wrapper.c
+
 #echo "Generating files for libstdc++ $stdcppver ..."
 
 #./gensymoverride GLIBCXX "$stdcppver" /lib/*.so.* /usr/lib/*.so.* > stdcpp_ver.h
+
 
 echo "Done!"
 

@@ -1,0 +1,8 @@
+lstat
+stat
+fstat
+fstatat
+lstat64
+stat64
+fstat64
+fstatat64
