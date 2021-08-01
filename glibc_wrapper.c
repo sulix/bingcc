@@ -23,6 +23,10 @@
 #endif
 #endif
 
+#ifndef _MKNOD_VER
+#define _MKNOD_VER 1
+#endif
+
 extern int __lxstat(int ver, const char *filename, struct stat *stat);
 int lstat(const char *filename, struct stat *stat)
 {
@@ -70,5 +74,18 @@ int fstatat64(int dirfd, const char *path, struct stat64 *stat, int flags)
 {
 	 return __fxstatat64(_STAT_VER, dirfd, path, stat, flags);
 }
+
+extern int __xmknod(int ver, const char *path, __mode_t mode, __dev_t dev);
+int mknod(const char *path, __mode_t mode, __dev_t dev)
+{
+	return __xmknod(_MKNOD_VER, path, mode, dev);
+}
+
+extern int __xmknodat(int ver, int dirfd, const char *path, __mode_t mode, __dev_t dev);
+int mknodat(int dirfd, const char *path, __mode_t mode, __dev_t dev)
+{
+	return __xmknodat(_MKNOD_VER, dirfd, path, mode, dev);
+}
+
 #endif
 

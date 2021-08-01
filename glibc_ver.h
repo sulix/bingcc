@@ -621,8 +621,8 @@ __asm__(".symver mallinfo2,mallinfo2@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
 __asm__(".symver mbrtoc16,mbrtoc16@GLIBC_NOT_AVAILABLE_BEFORE_2.16");
 __asm__(".symver mbrtoc32,mbrtoc32@GLIBC_NOT_AVAILABLE_BEFORE_2.16");
 __asm__(".symver memfd_create,memfd_create@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
-__asm__(".symver mknod,mknod@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
-__asm__(".symver mknodat,mknodat@GLIBC_NOT_AVAILABLE_BEFORE_2.33");
+/* skipping symbol mknod */
+/* skipping symbol mknodat */
 __asm__(".symver mlock2,mlock2@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
 __asm__(".symver modff128,modff128@GLIBC_NOT_AVAILABLE_BEFORE_2.26");
 __asm__(".symver modff32,modff32@GLIBC_NOT_AVAILABLE_BEFORE_2.27");
