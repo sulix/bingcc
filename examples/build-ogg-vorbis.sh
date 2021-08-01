@@ -1,7 +1,7 @@
 #!/bin/sh
 
-OGGVER=1.3.0
-VORBISVER=1.3.3
+OGGVER=1.3.5
+VORBISVER=1.3.7
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
