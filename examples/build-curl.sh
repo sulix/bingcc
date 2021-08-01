@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CURLVER=7.30.0
+CURLVER=7.78.0
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
