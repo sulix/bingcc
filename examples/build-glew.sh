@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GLEWVER=1.10.0
+GLEWVER=2.2.0
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
