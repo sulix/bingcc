@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ZLIBVER=1.2.8
+ZLIBVER=1.2.11
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
