@@ -1,6 +1,7 @@
 #!/bin/bash
 # [gensymoverride v0.2] by mjau, inspired by Autopackage's apsymbols
 # v0.2.1 by sulix: LC_ALL needs to be exported for sort to pick up on it :/
+# v0.2.2 by sulix: add support for exclusing a list of symbols
 
 export LC_ALL=C
 
@@ -33,7 +34,9 @@ function getsymver() {
 			fi
 		fi
 	done
-	if test $new -lt $max -a $old -gt 0; then
+	if [[ "$sym" =~ $(echo ^\($(paste -sd'|' ./forbidden_symbols)\)$) ]]; then
+		echo '/* skipping symbol '$sym' */'
+	elif test $new -lt $max -a $old -gt 0; then
 		echo '__asm__(".symver '$sym','$sym'@'$base'_'$oldv'");'
 	elif test $new -lt $max; then
 		echo '__asm__(".symver '$sym','$sym'@'$base'_NOT_AVAILABLE_BEFORE_'$newv'");'

@@ -42,17 +42,33 @@ fi
 #	stdcppver=$2
 #fi
 
+source ./common-options.sh
+
+
 echo "Generating files for glibc $libcver (native) ..."
 
 ./gensymoverride GLIBC "$libcver" $LIBCPATH > glibc_ver.h 
+
 
 echo "Generating files for glibc $libcver (32-bit) ..."
 
 ./gensymoverride GLIBC "$libcver" $LIBC32PATH > glibc_ver32.h 
 
-#echo "Generating files for libstdc++ $stdcppver ..."
 
-#./gensymoverride GLIBCXX "$stdcppver" /lib/*.so.* /usr/lib/*.so.* > stdcpp_ver.h
+# Generate the version and wrapper files for glibc 2.33+
+echo "#!/bin/bash" > version-options.sh
+echo "#!/bin/bash" > version-options32.sh
+
+if objdump -p $LIBCPATH | grep "GLIBC_2.33" > /dev/null ; then
+	echo "glibc 2.33 detected, building wrappers..."
+	echo 'bingcc_veropts="-Wl,$bingcc_incpath/glibc_wrapper.o"' >> version-options.sh
+	gcc $bingcc_options -fPIC -include "glibc_ver.h" -c -o glibc_wrapper.o glibc_wrapper.c
+	echo 'bingcc_veropts="-m32 -Wl,$bingcc_incpath/glibc_wrapper32.o"' >> version-options32.sh
+	gcc $bingcc_options -fPIC -m32 -include "glibc_ver32.h" -c -o glibc_wrapper32.o glibc_wrapper.c
+fi
+
+
+
 
 echo "Done!"
 
