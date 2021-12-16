@@ -29,11 +29,18 @@ to get it to work on anything other than the latest amd64 ubuntu release.
 You also might need to add CFLAGS=-fno-finite-math-only to your environment to
 counteract the use of -ffast-math.
 
+WARNING: This doesn't work for binaries built with glibc 2.34 or later yet, as
+__libc_start_main has been updated, and is linked in differently. Shared
+libraries do tend to work, though.
+
 Usage:
 
 [optional]: run ./setup-bingcc [max glibc version]
  - This scans your system libraries and generates the header using mjau's
-   gensymoverride. Max glibc version defaults to 2.3.6.
+   gensymoverride. Max glibc version defaults to 2.14. You'll need to run this
+   manually if you're using a verion older than 2.33 (due to changes in stat
+   functions), or later than 2.34 (as that's the version the built-in ones were
+   generated from).
 
 run bingcc-env:
  - This launces a bash shell which will have bingcc set up: it sets the CC and
