@@ -31,7 +31,9 @@ counteract the use of -ffast-math.
 
 WARNING: This doesn't work for binaries built with glibc 2.34 or later yet, as
 __libc_start_main has been updated, and is linked in differently. Shared
-libraries do tend to work, though.
+libraries do tend to work, though. You can work around this by removing the
+__libc_start_main version using patchelf[1]:
+	patchelf --clear-symbol-version __libc_start_main [filename]
 
 Usage:
 
@@ -61,4 +63,4 @@ There's a script to download and compile the Simple Directmedia Layer (v1.2) in
 the examples/ directory. Have a look if that's your thing. There's also one to
 build libogg/libvorbis and friends.
 
-
+[1]: https://github.com/NixOS/patchelf
