@@ -4,27 +4,24 @@
 # You'll need to have all of the development libraries installed: Xlib, Pulse,
 # ALSA, etc. You'll also need the 32-bit versions.
 # This builds both 32 and 64 bit versions of SDL (on my ubuntu 12.10 amd64
-# system). They'll be installed in ./SDL-1.2.15/libs(-32). Note that it'll
+# system). They'll be installed in ./libs(-32). Note that it'll
 # break pretty impressively on non-x86_64 systems at the moment.
 # Have fun,
 # -- David
 
-
-SDLVER=1.2.15
 
 # Get the bingcc path: feel free to replace this with a hardcoded path.
 MYFILENAME=`readlink -f "$0"`
 MYPATH=`dirname "$MYFILENAME"`
 BINGCCPATH=`readlink -f "$MYPATH/.."`
 
-wget -c http://www.libsdl.org/release/SDL-$SDLVER.tar.gz
-tar xf SDL-$SDLVER.tar.gz
+git clone --depth 1 https://github.com/libsdl-org/SDL-1.2.git
 
 BASEPATH=`readlink -f .`
 mkdir -p libs-32
 mkdir -p libs
 
-cd SDL-$SDLVER
+cd SDL-1.2
 # Cross-compile a 32-bit version
 
 mkdir -p build-32
