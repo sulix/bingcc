@@ -1,0 +1,32 @@
+name: "CI Build"
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup bingcc
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update
+          sudo apt install gcc-multilib g++-multilib libc6:i386
+          ./setup-bingcc 2.14
+      - name: Build SDL2
+        run: |
+          sudo apt-get install build-essential git make autoconf automake libtool \
+          pkg-config cmake ninja-build gnome-desktop-testing libasound2-dev libpulse-dev \
+          libaudio-dev libjack-dev libsndio-dev libsamplerate0-dev libx11-dev libxext-dev \
+          libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libwayland-dev \
+          libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
+          libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev fcitx-libs-dev 
+          ./examples/build-sdl2.sh
+      - name: Build SDL 1.2
+        run: |
+          ./examples/build-sdl-1.2.sh
+      - name: Build SDL3
+        run: |
+          ./examples/build-sdl3.sh
+
