@@ -35,6 +35,12 @@ libraries do tend to work, though. You can work around this by removing the
 __libc_start_main version using patchelf[1]:
 	patchelf --clear-symbol-version __libc_start_main [filename]
 
+WARNING: Equally, this doesn't handle the fact that libpthread, libdl, libm,
+etc. are now part of the main libc.so library, which means that binaries
+built with bingcc will not have these libraries in the NEEDED section.
+Again, this can be worked around with LD_PRELOAD, or patched with patchelf:
+	patchelf --add-needed <libpthread.so.0, etc>
+
 Usage:
 
 [optional]: run ./setup-bingcc [max glibc version]
