@@ -8,3 +8,4 @@ fstat64
 fstatat64
 mknod
 mknodat
+fcntl64

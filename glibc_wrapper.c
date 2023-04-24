@@ -1,5 +1,32 @@
 
 #include <sys/stat.h>
+
+#if __GLIBC_PREREQ(2,28)
+
+#include <fcntl.h>
+#include <stdarg.h>
+
+/* Internal __fcntl exposed in all glibc versions. */
+int __fcntl(int fd, int cmd, ...);
+
+int bingcc_fcntl64(int fd, int cmd, ...)
+{
+	/* We don't do any actual translation of offsets yet. */
+	if (cmd == F_SETLK || cmd == F_SETLKW || cmd == F_GETLK)
+	{
+		return -1;
+	}
+
+	va_list va;
+	va_start(va, cmd);
+	int err = __fcntl(fd, cmd, va_arg(va, void*));
+	va_end(va);
+
+	return err;
+}
+
+#endif
+
 #if __GLIBC_PREREQ(2,33)
 
 
