@@ -21,7 +21,7 @@ mkdir -p build-32
 
 cd build-32
 
-CMAKE_LIBRARY_PATH="/usr/lib/i386-linux-gnu" CC=$BINGCCPATH/bingcc32 cmake .. -DCMAKE_INSTALL_PREFIX="$BASEPATH/libs-32" -DSDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS=1
+CMAKE_LIBRARY_PATH="/usr/lib/i386-linux-gnu" CC=$BINGCCPATH/bingcc32 CXX=$BINGCCPATH/bing++32 cmake .. -DCMAKE_INSTALL_PREFIX="$BASEPATH/libs-32" -DSDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS=1
 make -j`nproc` install
 
 cd ..
@@ -32,6 +32,6 @@ mkdir -p build
 
 cd build
 
-CC=$BINGCCPATH/bingcc cmake .. -DCMAKE_INSTALL_PREFIX="$BASEPATH/libs" -DRPATH=0
+CC=$BINGCCPATH/bingcc CXX=$BINGCCPATH/bing++ cmake .. -DCMAKE_INSTALL_PREFIX="$BASEPATH/libs" -DRPATH=0
 make -j`nproc` install
 
