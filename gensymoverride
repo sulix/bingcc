@@ -50,7 +50,7 @@ function getversions() {
 		objdump -T "$i" | grep "${base}_" | grep -v "${base}_PRIVATE" |\
 		sed -e 's/.*'"${base}"'_\([.0-9]*\))* *\(.*\)/\2 \1/' \
 		-e 's/^ .*//'; done) | sort | uniq)
-	odd=1
+	odd=0
 	last=
 	clr="                                        "
 	(for i in $sym; do
