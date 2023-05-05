@@ -9,7 +9,7 @@
 /* Internal __fcntl exposed in all glibc versions. */
 int __fcntl(int fd, int cmd, ...);
 
-int bingcc_fcntl64(int fd, int cmd, ...)
+int __wrap_fcntl64(int fd, int cmd, ...)
 {
 	/* We don't do any actual translation of offsets yet. */
 	if (cmd == F_SETLK || cmd == F_SETLKW || cmd == F_GETLK)
